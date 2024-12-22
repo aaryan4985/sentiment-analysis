@@ -50,11 +50,14 @@ plt.ylabel('Count')
 plt.show()
 
 
-# Get input from the user
-user_text = input("Enter a sentence to analyze its sentiment: ")
+# Get multiple sentences from the user
+user_texts = input("Enter sentences separated by a semicolon (;): ")
 
-# Analyze the sentiment of the user input
-user_sentiment = analyze_sentiment(user_text)
+# Split the input into a list of sentences
+sentences = user_texts.split(';')
 
-# Display the result
-print(f"The sentiment of the entered text is: {user_sentiment}")
+# Analyze sentiment for each sentence
+for sentence in sentences:
+    sentiment = analyze_sentiment(sentence.strip())  # Remove extra spaces
+    print(f"Sentence: \"{sentence.strip()}\" - Sentiment: {sentiment}")
+

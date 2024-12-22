@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    <form action="/analyze" method="POST">
+        <textarea name="text" placeholder="Enter text here..."></textarea>
+        <button type="submit">Analyze</button>
+    </form>
+    {% if sentiment %}
+    <div class="result">
+        <strong>Text:</strong> {{ text }}<br>
+        <strong>Sentiment:</strong> {{ sentiment }}
+    </div>
+    {% endif %}
+</body>
+</html>
