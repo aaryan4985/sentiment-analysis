@@ -48,3 +48,13 @@ plt.ylabel('Count')
 
 # Show the plot
 plt.show()
+
+
+# Get input from the user
+user_text = input("Enter a sentence to analyze its sentiment: ")
+
+# Analyze the sentiment of the user input
+user_sentiment = analyze_sentiment(user_text)
+
+# Display the result
+print(f"The sentiment of the entered text is: {user_sentiment}")
