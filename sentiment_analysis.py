@@ -19,3 +19,19 @@ data = {
 # Create a DataFrame
 df = pd.DataFrame(data)
 print(df)
+
+# Function to analyze sentiment
+def analyze_sentiment(text):
+    analysis = TextBlob(text)  
+    polarity = analysis.sentiment.polarity
+    
+    if polarity > 0:
+        return "Positive"
+    elif polarity == 0:
+        return "Neutral"
+    else:
+        return "Negative"
+
+# Apply sentiment analysis to the text column
+df['sentiment'] = df['text'].apply(analyze_sentiment)
+print(df)
