@@ -35,3 +35,16 @@ def analyze_sentiment(text):
 # Apply sentiment analysis to the text column
 df['sentiment'] = df['text'].apply(analyze_sentiment)
 print(df)
+
+# Count the number of each sentiment
+sentiment_counts = df['sentiment'].value_counts()
+# Plot the sentiment counts
+sentiment_counts.plot(kind='bar', color=['green', 'blue', 'red'])
+
+# Add labels and title
+plt.title('Sentiment Distribution')
+plt.xlabel('Sentiment')
+plt.ylabel('Count')
+
+# Show the plot
+plt.show()
