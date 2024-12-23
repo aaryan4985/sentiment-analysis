@@ -9,36 +9,50 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f8f9fa;
         }
         .container {
             margin-top: 50px;
             max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .result {
             margin-top: 20px;
         }
-        .positive { color: green; }
-        .negative { color: red; }
-        .neutral { color: gray; }
+        .positive {
+            color: green;
+            font-weight: bold;
+        }
+        .negative {
+            color: red;
+            font-weight: bold;
+        }
+        .neutral {
+            color: gray;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Sentiment Analysis</h1>
+        <h1 class="text-center mb-4">Sentiment Analysis</h1>
         <form action="/analyze" method="POST">
             <div class="mb-3">
-                <textarea class="form-control" name="text" rows="4" placeholder="Enter text for sentiment analysis..."></textarea>
+                <textarea class="form-control" name="text" rows="4" placeholder="Enter text for sentiment analysis..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary w-100">Analyze</button>
         </form>
-        
+
         {% if sentiment %}
-        <div class="result mt-4">
-            <h4>Analysis Result:</h4>
+        <div class="result mt-4 text-center">
+            <h4>Analysis Result</h4>
             <p class="lead {{ sentiment | lower }}">{{ sentiment }}</p>
             <p><strong>Confidence Score:</strong> {{ score | round(2) }}</p>
-            <p><strong>Text:</strong> {{ text }}</p>
+            <p><strong>Analyzed Text:</strong></p>
+            <blockquote class="blockquote">{{ text }}</blockquote>
         </div>
         {% endif %}
     </div>

@@ -1,15 +1,22 @@
 from flask import Flask, render_template, request
-from transformers import pipeline
-
-# Initialize the sentiment analysis pipeline with a pre-trained model
-sentiment_analyzer = pipeline("sentiment-analysis")
 
 app = Flask(__name__)
 
-# Function to analyze sentiment
+# Function to analyze sentiment using a simple keyword-based approach
 def analyze_sentiment(text):
-    result = sentiment_analyzer(text)[0]
-    return result['label'], result['score']
+    positive_keywords = ['good', 'great', 'excellent', 'happy', 'positive', 'awesome', 'fantastic']
+    negative_keywords = ['bad', 'terrible', 'sad', 'negative', 'awful', 'horrible', 'poor']
+
+    text_lower = text.lower()
+    positive_count = sum(keyword in text_lower for keyword in positive_keywords)
+    negative_count = sum(keyword in text_lower for keyword in negative_keywords)
+
+    if positive_count > negative_count:
+        return 'POSITIVE', positive_count
+    elif negative_count > positive_count:
+        return 'NEGATIVE', negative_count
+    else:
+        return 'NEUTRAL', 0
 
 @app.route('/')
 def home():
